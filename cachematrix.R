@@ -1,15 +1,16 @@
 ## FHSeymour, R Programming Assignment 2
 ##
-## This two functions combination allows a square non-singular matrix to have its 
+## A two function combination that allows an invertible matrix to have its 
 ## inverse calculated once, cached, and read many times without re-calculation.
-## The first function, makeCacheMatrix, creates an object for storing the matrix values,
-## its inverse, and the function definitions for caching and retrieving the inverse.  
-## The second function cacheSolve, computes the inverse and
-## caches the results the first time it is called, and on subsequent calls it simply
+## The first function, makeCacheMatrix, is an object for storing the matrix,
+## its inverse, and function definitions for caching and retrieving the inverse.  
+## The second function cacheSolve, computes the inverse the first time it is 
+## called and caches the results in the object.  On subsequent calls, it simply
 ## returns the already cached inverse result.
 
-## The function makeCacheMatrix takes a matrix that is assumed to be
-## square and non-singular (invertable) and returns a list of three function/methods
+
+## makeCacheMatrix takes a matrix that is assumed to be
+## square and non-singular (invertable) and returns a list of three methods
 ## get: to return the original matrix
 ## setInverse to cache the calculated inverted matrix values
 ## getInverse to retrieve the previously cached inverted matrix values
@@ -68,15 +69,3 @@ cacheSolve <- function(mCM, ...) {
     mInv       
 }
 
-
-# code to test matrix calculations
-x <- matrix(c(1,0,0,1,
-              0,2,0,0,
-              0,0,3,0,
-              0,0,0,4), 4, 4)
-
-cm <- makeCacheMatrix(x)
-cacheSolve(cm)
-
-test <- x %*% cacheSolve(cm)
-test
